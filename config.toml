@@ -1,0 +1,15 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "ZeroClutter Anime"
+paginate = 15
+enableRobotsTXT = true
+[params]
+  description = "No clutter anime guides"
+  author = "ZeroClutter Anime Team"
+[outputs]
+  home = ["HTML", "RSS"]
+[sitemap]
+  changefreq = "daily"
+  priority = 0.8
+[markup.goldmark.renderer]
+  unsafe = true
