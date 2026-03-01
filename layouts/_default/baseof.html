@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description"
+        content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    {{ with .Params.image }}
+    <meta property="og:image" content="{{ . }}">{{ end }}
+    <meta name="twitter:card" content="summary_large_image">
+    {{ if .IsPage }}
+    <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"{{ .Title }}","datePublished":"{{ .Date.Format "2006-01-02" }}","author":{"@type":"Person","name":"{{ .Site.Params.author }}"}}
+  </script>
+    {{ end }}
+    <link rel="stylesheet" href="/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="site-name">{{ .Site.Title }}</a>
+        <nav><a href="/">Home</a> <a href="/posts/">Posts</a></nav>
+    </header>
+    <main>{{ block "main" . }}{{ end }}</main>
+    <footer class="footer">
+        <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
+    </footer>
+</body>
+
+</html>
